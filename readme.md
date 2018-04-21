@@ -1,0 +1,11 @@
+### 大叔对springboot的总结
+* 通过向导建立springboot-web项目
+* 通过src/main/resource/application.yml配置相关组件
+* 通过src/test/java添加对应测试
+* 在src/main/java下建立自己的包，进行开发
+  * 项目由controller,service,repository,utils,model组成
+  * 其中ioc注解时，业务类使用@Service，仓储类使用@Repository
+  * 对于类中需要其它接口注入时，使用@Autowired注解实现
+  * 单元测试时，mongodb使用内嵌式de.flapdoodle.embed.mongo，它会自己从远程下载，启动，删除等
+* 整个项目的编译，部署，测试都使用gradle通过build.gradle进行实现
+* springboot的项目提供了自身gradle机制，即gradlew，它会自动下载gradle程序，然后对项目进行编译
