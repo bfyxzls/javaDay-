@@ -3,6 +3,7 @@ package test.lind.javaLindDay;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import test.lind.javaLindDay.collection.CollectionDemo;
+import test.lind.javaLindDay.collection.StackDemo;
 import test.lind.javaLindDay.interfaceExt.Formula;
 import test.lind.javaLindDay.interfaceExt.FunctionalInterfaceDemo;
 
@@ -11,7 +12,8 @@ public class JavaLindDayApplication {
 
   public static void main(String[] args) {
     System.out.println("hello world!");
-    //接口里的扩展方法
+
+    // interface default method.
     Formula formula = new Formula() {
       @Override
       public double calculate(int a) {
@@ -34,7 +36,8 @@ public class JavaLindDayApplication {
     Integer converted = converter.convert("123");
     System.out.println(converted); // 123
 
-
+    // stack demo.
+    new StackDemo().test();
     SpringApplication.run(JavaLindDayApplication.class, args);
   }
 }
