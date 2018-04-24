@@ -41,7 +41,8 @@ public class JavaLindDayApplication {
     // yearMonth compare.
     new DateDemo().test();
 
-
+    // find list.
+    new CollectionDemo().findList();
     SpringApplication.run(JavaLindDayApplication.class, args);
   }
 }
