@@ -2,11 +2,13 @@ package test.lind.javaLindDay;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import test.lind.javaLindDay.classDemo.lombokDemo;
-import test.lind.javaLindDay.collection.CollectionDemo;
-import test.lind.javaLindDay.collection.StackDemo;
-import test.lind.javaLindDay.interfaceExt.Formula;
-import test.lind.javaLindDay.interfaceExt.FunctionalInterfaceDemo;
+import test.lind.javaLindDay.classDemo.LombokDemo;
+import test.lind.javaLindDay.collectionDemo.CollectionDemo;
+import test.lind.javaLindDay.collectionDemo.GroupDemo;
+import test.lind.javaLindDay.collectionDemo.StackDemo;
+import test.lind.javaLindDay.enumDemo.DescriptionDemo;
+import test.lind.javaLindDay.interfaceDemo.Formula;
+import test.lind.javaLindDay.interfaceDemo.FunctionalInterfaceDemo;
 import test.lind.javaLindDay.utilDemo.DateDemo;
 
 @SpringBootApplication
@@ -36,13 +38,20 @@ public class JavaLindDayApplication {
     new StackDemo().test();
 
     // class lombok demo.
-    new lombokDemo().test();
+    new LombokDemo().test();
 
     // yearMonth compare.
     new DateDemo().test();
 
     // find list.
     new CollectionDemo().findList();
+
+    // enum test.
+    new DescriptionDemo().test();
+
+    // grouping test.
+    new GroupDemo().test();
+
     SpringApplication.run(JavaLindDayApplication.class, args);
   }
 }

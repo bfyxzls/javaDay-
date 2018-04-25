@@ -1,6 +1,7 @@
-package test.lind.javaLindDay.collection;
+package test.lind.javaLindDay.collectionDemo;
 
 import lombok.Value;
+import lombok.val;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -65,13 +66,19 @@ public class CollectionDemo {
     list.add(new User("zzl"));
     list.add(new User("abc"));
     list.add(new User("bca"));
-    list = conditionFilter(list, exe -> exe.getName() == "zzl");
-    for (User user : list
+    val listResult1 = conditionFilter(list, exe -> exe.getName() == "zzl");
+    for (User user : listResult1
         ) {
       System.out.println(user.getName());
 
     }
 
+    val listResult = list.stream().filter(o -> o.name != "zzl").collect(Collectors.toList());
+
+    for (User item : listResult
+        ) {
+      System.out.println(item.getName());
+    }
   }
 
   @Value

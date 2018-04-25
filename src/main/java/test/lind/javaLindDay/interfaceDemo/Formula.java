@@ -1,4 +1,4 @@
-package test.lind.javaLindDay.interfaceExt;
+package test.lind.javaLindDay.interfaceDemo;
 
 public interface Formula {
 

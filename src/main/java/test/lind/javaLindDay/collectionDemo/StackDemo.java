@@ -1,4 +1,4 @@
-package test.lind.javaLindDay.collection;
+package test.lind.javaLindDay.collectionDemo;
 
 import java.util.Stack;
 
