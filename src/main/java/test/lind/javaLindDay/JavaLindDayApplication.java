@@ -9,7 +9,9 @@ import test.lind.javaLindDay.collectionDemo.StackDemo;
 import test.lind.javaLindDay.enumDemo.DescriptionDemo;
 import test.lind.javaLindDay.interfaceDemo.Formula;
 import test.lind.javaLindDay.interfaceDemo.FunctionalInterfaceDemo;
+import test.lind.javaLindDay.model.UserInfo;
 import test.lind.javaLindDay.utilDemo.DateDemo;
+import test.lind.javaLindDay.utilDemo.LoggerDemo;
 
 @SpringBootApplication
 public class JavaLindDayApplication {
@@ -52,6 +54,9 @@ public class JavaLindDayApplication {
     // grouping test.
     new GroupDemo().test();
 
+    //logger
+
+    new LoggerDemo().test();
     SpringApplication.run(JavaLindDayApplication.class, args);
   }
 }
