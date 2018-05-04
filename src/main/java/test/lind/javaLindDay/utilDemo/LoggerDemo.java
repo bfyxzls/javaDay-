@@ -7,6 +7,6 @@ import test.lind.javaLindDay.model.UserInfo;
 public class LoggerDemo {
   public void test() {
     UserInfo userInfo = UserInfo.builder().name("zzl").email("zzl@sina.com").build();
-    log.debug("{} format print {}", "hello", userInfo);
+    log.debug("{} format print {}", "hello", userInfo.getEmail());
   }
 }
