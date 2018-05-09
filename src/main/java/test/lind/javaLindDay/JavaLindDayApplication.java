@@ -1,11 +1,14 @@
 package test.lind.javaLindDay;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import test.lind.javaLindDay.classDemo.LombokDemo;
 import test.lind.javaLindDay.collectionDemo.CollectionDemo;
 import test.lind.javaLindDay.collectionDemo.GroupDemo;
 import test.lind.javaLindDay.collectionDemo.StackDemo;
+import test.lind.javaLindDay.collectionDemo.StreamDemo;
 import test.lind.javaLindDay.enumDemo.DescriptionDemo;
 import test.lind.javaLindDay.interfaceDemo.Formula;
 import test.lind.javaLindDay.interfaceDemo.FunctionalInterfaceDemo;
@@ -54,10 +57,29 @@ public class JavaLindDayApplication {
     // grouping test.
     new GroupDemo().test();
 
-    //logger
+    // logger
     new LoggerDemo().test();
 
+    // generic
+    List<Integer> ints = new ArrayList<>();
+    ints.add(3);
+    ints.add(5);
+    ints.add(10);
+    double sum = sum(ints);
+    System.out.println("Sum of ints=" + sum);
 
+    // map reduce
+    new StreamDemo().test();
     SpringApplication.run(JavaLindDayApplication.class, args);
   }
+
+  public static double sum(List<? extends Number> list) {
+    double sum = 0;
+    for (Number n : list) {
+      sum += n.doubleValue();
+    }
+    return sum;
+  }
+
+
 }
