@@ -1,7 +1,11 @@
 package test.lind.javaLindDay;
 
+import java.util.Set;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import lombok.val;
 import org.javamoney.moneta.Money;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +21,32 @@ public class ValidateTest {
   @Autowired
   WebTestClient webTestClient;
 
+  @Autowired
+  private Validator validator;
+
   @Test
   public void test() {
     UserInfo entity = UserInfo.builder()
-        .price(Money.of(100, "CNY"))
+        .price(Money.of(10, "CNY"))
         .build();
-    val obj = webTestClient.post()
+    webTestClient.post()
         .uri("/add")
         .body(BodyInserters.fromObject(entity))
         .exchange()
-        .expectStatus().isEqualTo(400)
-        .expectBody();
+        .expectStatus().isOk();
+
+  }
+
+  @Test
+  public void validateTest() {
+    UserInfo entity = UserInfo.builder()
+        .price(Money.of(81, "CNY"))
+        .build();
+    Set<ConstraintViolation<UserInfo>> violations = validator.validate(entity);
+    for (val item : violations) {
+      System.out.println(item.getMessage());
+    }
+    assertEquals(false, violations.isEmpty());
 
   }
 }

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "project")
-@PropertySource(value = "classpath:config.yml")
 public class MyConfig {
   private String version;
   private String name;

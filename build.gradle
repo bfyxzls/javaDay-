@@ -1,8 +1,8 @@
 buildscript {
-	ext {
-		springBootVersion = '2.0.1.RELEASE'
-	}
-	repositories {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
         // NOTE: You should declare only repositories that you need here
         mavenLocal()
         maven {
@@ -32,9 +32,9 @@ buildscript {
             url 'http://repos.zeroturnaround.com/nexus/content/groups/zt-public/'
         }
     }
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 apply plugin: 'java'
@@ -47,41 +47,56 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-        // NOTE: You should declare only repositories that you need here
-        mavenLocal()
-        maven {
-            name "aliyun1"
-            url 'http://maven.aliyun.com/nexus/content/groups/public'
-        }
-        maven {
-            name "aliyun2"
-            url 'http://maven.aliyun.com/mvn/repository/'
-        }
-        maven {
-            name "spring repo"
-            url "http://repo.spring.io/release"
-        }
-        maven {
-            name "spring milestone"
-            url "https://repo.spring.io/milestone/"
-        }
-        maven {
-            name "spring snapshot"
-            url "https://repo.spring.io/snapshot"
-        }
-
-        jcenter()
-        mavenCentral()
-        maven {
-            url 'http://repos.zeroturnaround.com/nexus/content/groups/zt-public/'
-        }
+    // NOTE: You should declare only repositories that you need here
+    mavenLocal()
+    maven {
+        name "aliyun1"
+        url 'http://maven.aliyun.com/nexus/content/groups/public'
     }
+    maven {
+        name "aliyun2"
+        url 'http://maven.aliyun.com/mvn/repository/'
+    }
+    maven {
+        name "spring repo"
+        url "http://repo.spring.io/release"
+    }
+    maven {
+        name "spring milestone"
+        url "https://repo.spring.io/milestone/"
+    }
+    maven {
+        name "spring snapshot"
+        url "https://repo.spring.io/snapshot"
+    }
+
+    jcenter()
+    mavenCentral()
+    maven {
+        url 'http://repos.zeroturnaround.com/nexus/content/groups/zt-public/'
+    }
+}
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-web','org.zalando:jackson-datatype-money:1.0.0-RC2')
-	testCompile('org.springframework.boot:spring-boot-starter-test','org.springframework.boot:spring-boot-starter-webflux','org.javamoney:moneta:1.2.1','org.projectlombok:lombok')
-    compileOnly('org.projectlombok:lombok', 'org.javamoney:moneta:1.2.1')
-    compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+    compile(
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.zalando:jackson-datatype-money:1.0.0-RC2',
+            'org.javamoney:moneta:1.1'
+
+    )
+    testCompile(
+            'org.springframework.boot:spring-boot-starter-test',
+            'org.springframework.boot:spring-boot-starter-webflux',
+            'org.javamoney:moneta:1.1',
+            'org.projectlombok:lombok',
+            'org.zalando:jackson-datatype-money:1.0.0-RC2'
+
+    )
+    compileOnly(
+            'org.projectlombok:lombok',
+            'org.springframework.boot:spring-boot-configuration-processor'
+    )
+
 
 }

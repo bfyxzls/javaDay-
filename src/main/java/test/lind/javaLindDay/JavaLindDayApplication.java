@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
 import test.lind.javaLindDay.classDemo.LombokDemo;
 import test.lind.javaLindDay.collectionDemo.CollectionDemo;
 import test.lind.javaLindDay.collectionDemo.GroupDemo;
@@ -74,7 +71,8 @@ public class JavaLindDayApplication {
     // map reduce
     new StreamDemo().test();
 
-
+    // lombok demo
+    new LombokDemo().test();
 
     SpringApplication.run(JavaLindDayApplication.class, args);
   }

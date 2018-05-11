@@ -1,24 +1,19 @@
 package test.lind.javaLindDay.classDemo;
 
-
-import lombok.Value;
-import lombok.val;
-
-import java.util.Date;
+import test.lind.javaLindDay.model.UserInfo;
 
 
 public class LombokDemo {
   public void test() {
-    val model = new model("zzl", new Date());
-    System.out.println(model.getName());
-
-
+    UserInfo userInfo = UserInfo.builder()
+        .name("zzl")
+        .email("bgood@sina.com")
+        .build();
+    userInfo = userInfo.toBuilder()
+        .name("OK")
+        .email("zgood@sina.com")
+        .build();
+    System.out.println("name=" + userInfo.getName());
   }
 
-  @Value
-  public class model {
-    private String name;
-    private Date createAt;
-
-  }
 }
