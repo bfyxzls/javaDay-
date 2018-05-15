@@ -14,6 +14,10 @@ public abstract class Car {
     }
   }
 
+  public void printName() {
+    System.out.println("汽车");
+  }
+
   protected boolean selfValidate() {
     return true;
   }

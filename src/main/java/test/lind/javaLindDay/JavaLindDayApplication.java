@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import test.lind.javaLindDay.classDemo.BiaozhiCar;
+import test.lind.javaLindDay.classDemo.FengTianCar;
 import test.lind.javaLindDay.classDemo.LombokDemo;
 import test.lind.javaLindDay.collectionDemo.CollectionDemo;
 import test.lind.javaLindDay.collectionDemo.GroupDemo;
@@ -12,6 +14,8 @@ import test.lind.javaLindDay.collectionDemo.StreamDemo;
 import test.lind.javaLindDay.enumDemo.DescriptionDemo;
 import test.lind.javaLindDay.interfaceDemo.Formula;
 import test.lind.javaLindDay.interfaceDemo.FunctionalInterfaceDemo;
+import test.lind.javaLindDay.threadDemo.RunnableDemo;
+import test.lind.javaLindDay.threadDemo.ThreadClassDemo;
 import test.lind.javaLindDay.utilDemo.DateDemo;
 import test.lind.javaLindDay.utilDemo.LoggerDemo;
 
@@ -74,6 +78,15 @@ public class JavaLindDayApplication {
     // lombok demo
     new LombokDemo().test();
 
+
+    //lambda
+    GreetingService greetingService = msg -> System.out.println("lambda.msg=" + msg);
+    greetingService.sayMessage("lind.zzl");
+
+    //class
+    new FengTianCar().printName();
+    new BiaozhiCar().printName();
+
     SpringApplication.run(JavaLindDayApplication.class, args);
   }
 
@@ -85,5 +98,8 @@ public class JavaLindDayApplication {
     return sum;
   }
 
+  interface GreetingService {
+    void sayMessage(String message);
+  }
 
 }
