@@ -8,14 +8,14 @@ import test.lind.javaLindDay.classDemo.BiaozhiCar;
 import test.lind.javaLindDay.classDemo.FengTianCar;
 import test.lind.javaLindDay.classDemo.LombokDemo;
 import test.lind.javaLindDay.collectionDemo.CollectionDemo;
+import test.lind.javaLindDay.collectionDemo.GenericDemo;
 import test.lind.javaLindDay.collectionDemo.GroupDemo;
 import test.lind.javaLindDay.collectionDemo.StackDemo;
 import test.lind.javaLindDay.collectionDemo.StreamDemo;
 import test.lind.javaLindDay.enumDemo.DescriptionDemo;
 import test.lind.javaLindDay.interfaceDemo.Formula;
 import test.lind.javaLindDay.interfaceDemo.FunctionalInterfaceDemo;
-import test.lind.javaLindDay.threadDemo.RunnableDemo;
-import test.lind.javaLindDay.threadDemo.ThreadClassDemo;
+import test.lind.javaLindDay.model.UserInfo;
 import test.lind.javaLindDay.utilDemo.DateDemo;
 import test.lind.javaLindDay.utilDemo.LoggerDemo;
 
@@ -86,6 +86,10 @@ public class JavaLindDayApplication {
     //class
     new FengTianCar().printName();
     new BiaozhiCar().printName();
+
+    //generic method
+    GenericDemo.test();
+    GenericDemo.getAll( UserInfo.builder().email("zzl").build());
 
     SpringApplication.run(JavaLindDayApplication.class, args);
   }
