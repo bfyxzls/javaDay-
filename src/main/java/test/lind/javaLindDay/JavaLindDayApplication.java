@@ -2,6 +2,8 @@ package test.lind.javaLindDay;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import test.lind.javaLindDay.classDemo.BiaozhiCar;
@@ -15,7 +17,9 @@ import test.lind.javaLindDay.collectionDemo.StreamDemo;
 import test.lind.javaLindDay.enumDemo.DescriptionDemo;
 import test.lind.javaLindDay.interfaceDemo.Formula;
 import test.lind.javaLindDay.interfaceDemo.FunctionalInterfaceDemo;
+import test.lind.javaLindDay.model.UserDto;
 import test.lind.javaLindDay.model.UserInfo;
+import test.lind.javaLindDay.streamDemo.MapDemo;
 import test.lind.javaLindDay.utilDemo.DateDemo;
 import test.lind.javaLindDay.utilDemo.LoggerDemo;
 
@@ -82,6 +86,7 @@ public class JavaLindDayApplication {
     //lambda
     GreetingService greetingService = msg -> System.out.println("lambda.msg=" + msg);
     greetingService.sayMessage("lind.zzl");
+    MapDemo.test();
 
     //class
     new FengTianCar().printName();
@@ -89,8 +94,15 @@ public class JavaLindDayApplication {
 
     //generic method
     GenericDemo.test();
-    GenericDemo.getAll( UserInfo.builder().email("zzl").build());
+    GenericDemo.getAll(UserInfo.builder().email("zzl").build());
 
+    //automapper
+    UserInfo userinfo = UserInfo.builder().name("zzl").build();
+    UserDto userDto = new UserDto();
+     BeanUtils.copyProperties(userinfo, userDto);
+
+    ModelMapper modelMapper = new ModelMapper();
+    userDto = modelMapper.map(userinfo, UserDto.class);
     SpringApplication.run(JavaLindDayApplication.class, args);
   }
 
