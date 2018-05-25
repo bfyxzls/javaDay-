@@ -17,6 +17,7 @@ import test.lind.javaLindDay.collectionDemo.StreamDemo;
 import test.lind.javaLindDay.enumDemo.DescriptionDemo;
 import test.lind.javaLindDay.interfaceDemo.Formula;
 import test.lind.javaLindDay.interfaceDemo.FunctionalInterfaceDemo;
+import test.lind.javaLindDay.model.Person;
 import test.lind.javaLindDay.model.UserDto;
 import test.lind.javaLindDay.model.UserInfo;
 import test.lind.javaLindDay.streamDemo.MapDemo;
@@ -99,10 +100,13 @@ public class JavaLindDayApplication {
     //automapper
     UserInfo userinfo = UserInfo.builder().name("zzl").build();
     UserDto userDto = new UserDto();
-     BeanUtils.copyProperties(userinfo, userDto);
+    BeanUtils.copyProperties(userinfo, userDto);
 
     ModelMapper modelMapper = new ModelMapper();
     userDto = modelMapper.map(userinfo, UserDto.class);
+    System.out.println("userDto.name=" + userDto.getName());
+    //group by
+    Person.testGroupBy();
     SpringApplication.run(JavaLindDayApplication.class, args);
   }
 

@@ -13,4 +13,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserDto {
   private String name;
+
+  public String getName() {
+    return "OK";//对name属性进行控制，值永远为OK
+  }
 }

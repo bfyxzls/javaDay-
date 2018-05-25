@@ -11,7 +11,7 @@ import org.zalando.jackson.datatype.money.MoneyModule;
 @Configuration
 class JacksonConfig {
   @Bean
-  public MoneyModule moneyModule() {
-    return new MoneyModule().withMonetaryAmount(Money::of);
-  }
+public MoneyModule moneyModule() {
+  return new MoneyModule().withMonetaryAmount(Money::of);
+}
 }
