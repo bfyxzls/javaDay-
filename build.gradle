@@ -83,7 +83,8 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-web',
             'org.zalando:jackson-datatype-money:1.0.0-RC2',
             'org.javamoney:moneta:1.1',
-            'org.modelmapper:modelmapper:2.0.0'
+            'org.modelmapper:modelmapper:2.0.0',
+            'org.springframework.boot:spring-boot-starter-data-mongodb'
 
 
     )

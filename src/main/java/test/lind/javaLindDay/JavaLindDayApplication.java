@@ -12,6 +12,7 @@ import test.lind.javaLindDay.classDemo.LombokDemo;
 import test.lind.javaLindDay.collectionDemo.CollectionDemo;
 import test.lind.javaLindDay.collectionDemo.GenericDemo;
 import test.lind.javaLindDay.collectionDemo.GroupDemo;
+import test.lind.javaLindDay.collectionDemo.MapInheritDemo;
 import test.lind.javaLindDay.collectionDemo.StackDemo;
 import test.lind.javaLindDay.collectionDemo.StreamDemo;
 import test.lind.javaLindDay.enumDemo.DescriptionDemo;
@@ -22,11 +23,11 @@ import test.lind.javaLindDay.model.UserDto;
 import test.lind.javaLindDay.model.UserInfo;
 import test.lind.javaLindDay.streamDemo.MapDemo;
 import test.lind.javaLindDay.utilDemo.DateDemo;
+import test.lind.javaLindDay.utilDemo.HttpClientDemo;
 import test.lind.javaLindDay.utilDemo.LoggerDemo;
 
 @SpringBootApplication
 public class JavaLindDayApplication {
-
 
   public static void main(String[] args) {
     System.out.println("hello world!");
@@ -107,6 +108,11 @@ public class JavaLindDayApplication {
     System.out.println("userDto.name=" + userDto.getName());
     //group by
     Person.testGroupBy();
+
+    //map demo
+    MapInheritDemo.test();
+
+    HttpClientDemo.test();
     SpringApplication.run(JavaLindDayApplication.class, args);
   }
 
