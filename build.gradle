@@ -77,6 +77,16 @@ repositories {
     }
 }
 
+ext {
+    springCloudVersion = 'Finchley.RC1'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
 
 dependencies {
     compile(
@@ -84,7 +94,10 @@ dependencies {
             'org.zalando:jackson-datatype-money:1.0.0-RC2',
             'org.javamoney:moneta:1.1',
             'org.modelmapper:modelmapper:2.0.0',
-            'org.springframework.boot:spring-boot-starter-data-mongodb'
+            'org.springframework.boot:spring-boot-starter-data-mongodb',
+            'org.springframework.cloud:spring-cloud-starter-openfeign',
+            'org.springframework.cloud:spring-cloud-starter-sleuth',
+            'org.springframework.boot:spring-boot-starter-actuator',
 
 
     )
