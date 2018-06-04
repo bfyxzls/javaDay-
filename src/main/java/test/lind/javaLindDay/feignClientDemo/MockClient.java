@@ -3,7 +3,6 @@ package test.lind.javaLindDay.feignClientDemo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 
 /**
  * 模拟其他服务.
@@ -11,6 +10,6 @@ import org.springframework.web.bind.annotation.Mapping;
 @Profile("!integTest")
 @FeignClient(name = "serviceName")
 public interface MockClient {
-  @GetMapping(path="/balanceSheet/{clientCode}")
+  @GetMapping(path = "/balanceSheet/{clientCode}")
   String balanceSheet(String clientCode);
 }

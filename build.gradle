@@ -87,6 +87,19 @@ dependencyManagement {
     }
 }
 
+//默认的一些文件路径的配置
+sourceSets {
+    integTest {
+        java.srcDir file('src/test/java')
+        resources.srcDir file('src/test/resources')
+    }
+}
+
+task integTest(type: Test) {
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+}
+
 
 dependencies {
     compile(
