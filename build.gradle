@@ -1,6 +1,7 @@
 buildscript {
     ext {
         springBootVersion = '2.0.1.RELEASE'
+        springCloudVersion = 'Finchley.RC1'
     }
     repositories {
         // NOTE: You should declare only repositories that you need here
@@ -35,6 +36,10 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
+}
+
+plugins {
+    id "org.asciidoctor.convert" version "1.5.3"
 }
 
 apply plugin: 'java'
@@ -77,15 +82,12 @@ repositories {
     }
 }
 
-ext {
-    springCloudVersion = 'Finchley.RC1'
-}
-
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
+
 
 //默认的一些文件路径的配置
 sourceSets {
@@ -100,7 +102,6 @@ task integTest(type: Test) {
     classpath = sourceSets.test.runtimeClasspath
 }
 
-
 dependencies {
     compile(
             'org.springframework.boot:spring-boot-starter-web',
@@ -111,15 +112,19 @@ dependencies {
             'org.springframework.cloud:spring-cloud-starter-openfeign',
             'org.springframework.cloud:spring-cloud-starter-sleuth',
             'org.springframework.boot:spring-boot-starter-actuator',
+            'org.springframework.restdocs:spring-restdocs-mockmvc',
 
 
     )
+
     testCompile(
             'org.springframework.boot:spring-boot-starter-test',
             'org.springframework.boot:spring-boot-starter-webflux',
             'org.javamoney:moneta:1.1',
             'org.projectlombok:lombok',
-            'org.zalando:jackson-datatype-money:1.0.0-RC2'
+            'org.zalando:jackson-datatype-money:1.0.0-RC2',
+            'org.springframework.restdocs:spring-restdocs-mockmvc',
+
 
     )
     compileOnly(

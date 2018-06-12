@@ -1,52 +1,29 @@
 package test.lind.javaLindDay;
 
-import java.util.Set;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
-import lombok.val;
-import org.javamoney.moneta.Money;
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.web.reactive.function.BodyInserters;
 import test.lind.javaLindDay.model.UserInfo;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ValidateTest {
-  @Autowired
-  WebTestClient webTestClient;
-
-  @Autowired
-  private Validator validator;
+public class ValidateTest extends TestBase {
 
   @Test
-  public void test() {
-    UserInfo entity = UserInfo.builder()
-        .price(Money.of(10, "CNY"))
-        .build();
-    webTestClient.post()
-        .uri("/add")
-        .body(BodyInserters.fromObject(entity))
-        .exchange()
-        .expectStatus().isOk();
+  public void importClass() {
+    List<UserInfo> userinfos = new ArrayList<>();
+    List<UserInfo> userInfos2 = new ArrayList<>();
 
-  }
-
-  @Test
-  public void validateTest() {
-    UserInfo entity = UserInfo.builder()
-        .price(Money.of(81, "CNY"))
-        .build();
-    Set<ConstraintViolation<UserInfo>> violations = validator.validate(entity);
-    for (val item : violations) {
-      System.out.println(item.getMessage());
+    UserInfo userInfo = UserInfo.builder().build();
+    userInfo = userInfo.toBuilder().email("zzl@sina.com").build();
+    userinfos.add(userInfo);
+    for (UserInfo userInfo1 : userinfos) {
+     userInfos2.add(userInfo1.toBuilder().email("ok@sina.com").build());
     }
-    assertEquals(false, violations.isEmpty());
+    for (UserInfo userInfo1 : userInfos2) {
+
+      assertEquals(userInfo1.getEmail(), "ok@sina.com");
+    }
 
   }
+
 }

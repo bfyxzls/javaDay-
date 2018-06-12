@@ -1,17 +1,16 @@
 package test.lind.javaLindDay.controller;
 
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
-import static org.springframework.data.mongodb.core.query.Criteria.where;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import test.lind.javaLindDay.classDemo.AodiCar;
@@ -33,14 +32,15 @@ public class HomeController {
   MongoTemplate mongoTemplate;
 
   @RequestMapping("/")
-  public List<OrderInfo> Index() throws Exception {
+  public Map<String, String> Index(String buyer) throws Exception {
     Car car = (Car) Class.forName(AodiCar.class.getName()).newInstance();
     car.validate();
     Map<String, String> maps = new HashMap<>();
-    maps.put("name", "zzl");
+    maps.put("name", "hello");
     maps.put("sex", "1");
+    maps.put("buyer", buyer);
     log.info("userinfo:{}", maps);
-    return insertDemo.get();
+    return maps;
   }
 
   @GetMapping("/add")
