@@ -1,11 +1,13 @@
 package test.lind.javaLindDay;
 
-import static org.junit.matchers.JUnitMatchers.containsString;
+import static org.hamcrest.Matchers.containsString;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.relaxedRequestFields;
 import static org.springframework.restdocs.payload.PayloadDocumentation.relaxedResponseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -17,31 +19,40 @@ import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDoc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.restdocs.payload.RequestFieldsSnippet;
 import org.springframework.restdocs.payload.ResponseFieldsSnippet;
+import org.springframework.restdocs.request.PathParametersSnippet;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import test.lind.javaLindDay.controller.HomeController;
+import test.lind.javaLindDay.controller.DocController;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(HomeController.class)
+@WebMvcTest(DocController.class)
 @AutoConfigureRestDocs(outputDir = "target/snippets")
 public class MockMvcTest {
   static final ResponseFieldsSnippet orderResponseFieldsParameters = relaxedResponseFields(
-      fieldWithPath("body.name").description("账号"),
-      fieldWithPath("body.buyer").description("购买者"),
-      fieldWithPath("body.sex").description("性别")
+      fieldWithPath("name").description("账号"),
+      fieldWithPath("buyer").description("购买者"),
+      fieldWithPath("sex").description("性别")
   );
   static final RequestFieldsSnippet orderRequestFieldsParameters = relaxedRequestFields(
       fieldWithPath("code").description("凭证号"),
       fieldWithPath("word").description("凭证字"),
-      fieldWithPath("batch").description("批次"));
+      fieldWithPath("batch").description("批次")
+  );
+  static final PathParametersSnippet orderRequestPathParameters = pathParameters(
+      parameterWithName("buyer").description("购买者")
+  );
+
   @Autowired
   private MockMvc mockMvc;
 
   @Test
   public void get_orders() throws Exception {
-    this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-        .andExpect(content().string(containsString("hello")))
-        .andDo(document("home"));
+    this.mockMvc.perform(
+        get(DocController.DOC, "zzl"))
+        .andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(content().string(containsString("Hello")))
+        .andDo(document("doc", orderRequestPathParameters, orderResponseFieldsParameters));
   }
 
 

@@ -112,8 +112,6 @@ dependencies {
             'org.springframework.cloud:spring-cloud-starter-openfeign',
             'org.springframework.cloud:spring-cloud-starter-sleuth',
             'org.springframework.boot:spring-boot-starter-actuator',
-            'org.springframework.restdocs:spring-restdocs-mockmvc',
-
 
     )
 

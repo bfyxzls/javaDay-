@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import test.lind.javaLindDay.classDemo.AodiCar;
@@ -32,11 +33,11 @@ public class HomeController {
   MongoTemplate mongoTemplate;
 
   @RequestMapping("/")
-  public Map<String, String> Index(String buyer) throws Exception {
+  public Map<String, String> Index(@PathVariable String buyer) throws Exception {
     Car car = (Car) Class.forName(AodiCar.class.getName()).newInstance();
     car.validate();
     Map<String, String> maps = new HashMap<>();
-    maps.put("name", "hello");
+    maps.put("name", "Hello");
     maps.put("sex", "1");
     maps.put("buyer", buyer);
     log.info("userinfo:{}", maps);
