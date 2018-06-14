@@ -1,4 +1,0 @@
-[source,options="nowrap"]
-----
-{"sex":"1","name":"Hello","buyer":"zzl"}
-----

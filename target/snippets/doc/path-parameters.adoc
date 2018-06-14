@@ -1,8 +1,0 @@
-./doc/{buyer}
-|===
-|Parameter|Description
-
-|`+buyer+`
-|购买者
-
-|===

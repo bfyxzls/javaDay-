@@ -46,10 +46,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-
-group = 'test.lind'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+apply plugin: 'org.asciidoctor.convert'
 
 repositories {
     // NOTE: You should declare only repositories that you need here
@@ -102,6 +99,35 @@ task integTest(type: Test) {
     classpath = sourceSets.test.runtimeClasspath
 }
 
+jar {
+    group = 'test.lind'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = 1.8
+    dependsOn asciidoctor
+    from ("${asciidoctor.outputDir}/html5") {
+        into 'static/docs'
+    }
+}
+
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+
+
+integTest {
+    outputs.dir snippetsDir
+}
+
+
+asciidoctor {
+    attributes 'snippets': snippetsDir
+    inputs.dir snippetsDir
+    outputDir "build/asciidoc"
+    dependsOn test
+    sourceDir 'src/docs/asciidoc'
+}
+
+
 dependencies {
     compile(
             'org.springframework.boot:spring-boot-starter-web',
@@ -123,12 +149,10 @@ dependencies {
             'org.zalando:jackson-datatype-money:1.0.0-RC2',
             'org.springframework.restdocs:spring-restdocs-mockmvc',
 
-
     )
     compileOnly(
             'org.projectlombok:lombok',
             'org.springframework.boot:spring-boot-configuration-processor'
     )
-
 
 }

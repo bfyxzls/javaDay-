@@ -1,0 +1,8 @@
+= 正常做账
+
+== 结账
+operation::doc-index [snippets='path-parameters,curl-request,http-response']
+== 反结账
+operation::doc-list [snippets='path-parameters,curl-request,http-response']
+
+
