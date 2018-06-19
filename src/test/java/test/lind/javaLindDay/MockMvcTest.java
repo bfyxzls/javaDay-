@@ -1,34 +1,39 @@
 package test.lind.javaLindDay;
 
-    import static org.hamcrest.Matchers.containsString;
-    import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-    import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
-    import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-    import static org.springframework.restdocs.payload.PayloadDocumentation.relaxedRequestFields;
-    import static org.springframework.restdocs.payload.PayloadDocumentation.relaxedResponseFields;
-    import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-    import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
-    import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-    import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-    import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.containsString;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.relaxedRequestFields;
+import static org.springframework.restdocs.payload.PayloadDocumentation.relaxedResponseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-    import org.junit.Test;
-    import org.junit.runner.RunWith;
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
-    import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-    import org.springframework.restdocs.payload.RequestFieldsSnippet;
-    import org.springframework.restdocs.payload.ResponseFieldsSnippet;
-    import org.springframework.restdocs.request.PathParametersSnippet;
-    import org.springframework.test.context.ActiveProfiles;
-    import org.springframework.test.context.junit4.SpringRunner;
-    import org.springframework.test.web.servlet.MockMvc;
-    import test.lind.javaLindDay.controller.DocController;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.restdocs.JUnitRestDocumentation;
+import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
+import org.springframework.restdocs.payload.RequestFieldsSnippet;
+import org.springframework.restdocs.payload.ResponseFieldsSnippet;
+import org.springframework.restdocs.request.PathParametersSnippet;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+import test.lind.javaLindDay.controller.DocController;
 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("integTest")//指定profile环境
 @RunWith(SpringRunner.class)
-@WebMvcTest(DocController.class)
-@AutoConfigureRestDocs(outputDir = "build/generated-snippets")
 public class MockMvcTest {
   static final ResponseFieldsSnippet orderResponseFieldsParameters = relaxedResponseFields(
       fieldWithPath("name").description("账号"),
@@ -44,8 +49,24 @@ public class MockMvcTest {
       parameterWithName("name").description("购买者")
   );
 
+  @Rule
+  public JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation();
+
+  protected MockMvc mockMvc;
+
   @Autowired
-  private MockMvc mockMvc;
+  private WebApplicationContext context;
+
+  @Before
+  public void setUp() {
+    this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context)
+        .apply(MockMvcRestDocumentation.documentationConfiguration(restDocumentation)
+            .uris().withScheme("http").withHost("localhost").withPort(8080)
+            .and()
+            .operationPreprocessors().withResponseDefaults(prettyPrint()))
+        .build();
+  }
+
 
   @Test
   public void get_orders() throws Exception {

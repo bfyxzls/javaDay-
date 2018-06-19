@@ -85,12 +85,12 @@ dependencyManagement {
     }
 }
 
-
 //默认的一些文件路径的配置
 sourceSets {
     integTest {
         java.srcDir file('src/test/java')
         resources.srcDir file('src/test/resources')
+
     }
 }
 
@@ -98,13 +98,14 @@ task integTest(type: Test) {
     testClassesDirs = sourceSets.test.output.classesDirs
     classpath = sourceSets.test.runtimeClasspath
 }
+group = 'test.lind'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
 
 jar {
-    group = 'test.lind'
-    version = '0.0.1-SNAPSHOT'
-    sourceCompatibility = 1.8
+
     dependsOn asciidoctor
-    from ("${asciidoctor.outputDir}/html5") {
+    from("${asciidoctor.outputDir}/html5") {
         into 'static/docs'
     }
 }
@@ -113,17 +114,13 @@ ext {
     snippetsDir = file('build/generated-snippets')
 }
 
-
 integTest {
     outputs.dir snippetsDir
 }
-
-
 asciidoctor {
-    attributes 'snippets': snippetsDir
     inputs.dir snippetsDir
     outputDir "build/asciidoc"
-    dependsOn test
+    dependsOn integTest
     sourceDir 'src/docs/asciidoc'
 }
 
@@ -138,7 +135,6 @@ dependencies {
             'org.springframework.cloud:spring-cloud-starter-openfeign',
             'org.springframework.cloud:spring-cloud-starter-sleuth',
             'org.springframework.boot:spring-boot-starter-actuator',
-
     )
 
     testCompile(
@@ -154,5 +150,7 @@ dependencies {
             'org.projectlombok:lombok',
             'org.springframework.boot:spring-boot-configuration-processor'
     )
+
+    asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 
 }

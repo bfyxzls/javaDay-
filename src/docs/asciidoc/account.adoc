@@ -1,8 +1,7 @@
-= 正常做账
+= 订单管理
 
-== 结账
-operation::doc-index [snippets='path-parameters,curl-request,http-response']
-== 反结账
-operation::doc-list [snippets='path-parameters,curl-request,http-response']
+== 我的订单
+operation::doc-index[snippets='path-parameters,request-fields,curl-request,response-fields,http-response']
 
-
+== 订单列表
+operation::doc-list[snippets='path-parameters,request-fields,curl-request,response-fields,http-response']
