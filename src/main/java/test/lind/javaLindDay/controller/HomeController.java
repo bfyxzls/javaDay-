@@ -50,6 +50,13 @@ public class HomeController {
     return "OK";
   }
 
+  @GetMapping("/errors")
+  public String errors() {
+    int a = 0;
+    int b = 1 / a;
+    return "OK";
+  }
+
   @GetMapping("/edit")
   public OrderInfo edit() {
     Criteria cri = where("id").is("5b0e665d9015deea03996a0c");
