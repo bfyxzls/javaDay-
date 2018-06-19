@@ -3,6 +3,7 @@ package test.lind.javaLindDay;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.relaxedRequestFields;
@@ -13,12 +14,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.restdocs.JUnitRestDocumentation;
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
 import org.springframework.restdocs.payload.RequestFieldsSnippet;
@@ -41,9 +46,9 @@ public class MockMvcTest {
       fieldWithPath("sex").description("性别")
   );
   static final RequestFieldsSnippet orderRequestFieldsParameters = relaxedRequestFields(
-      fieldWithPath("code").description("凭证号"),
-      fieldWithPath("word").description("凭证字"),
-      fieldWithPath("batch").description("批次")
+      fieldWithPath("name").description("账号"),
+      fieldWithPath("buyer").description("购买者"),
+      fieldWithPath("sex").description("性别")
   );
   static final PathParametersSnippet orderRequestPathParameters = pathParameters(
       parameterWithName("name").description("购买者")
@@ -51,9 +56,9 @@ public class MockMvcTest {
 
   @Rule
   public JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation();
-
   protected MockMvc mockMvc;
-
+  @Autowired
+  ObjectMapper objectMapper;
   @Autowired
   private WebApplicationContext context;
 
@@ -75,7 +80,9 @@ public class MockMvcTest {
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(content().string(containsString("Hello")))
-        .andDo(document("doc-index", orderRequestPathParameters, orderResponseFieldsParameters));
+        .andDo(document("doc-index",
+            orderRequestPathParameters,
+            orderResponseFieldsParameters));
   }
 
   @Test
@@ -84,6 +91,25 @@ public class MockMvcTest {
         get(DocController.DOC_LIST))
         .andDo(print())
         .andExpect(status().isOk())
-        .andDo(document("doc-list", orderResponseFieldsParameters));
+        .andDo(document("doc-list",
+            orderResponseFieldsParameters));
+  }
+
+  @Test
+  public void do_order() throws Exception {
+    Map<String, String> maps = new HashMap<>();
+    maps.put("name", "张三");
+    maps.put("buyer", "张四");
+    maps.put("sex", "男");
+    this.mockMvc.perform(
+        post(DocController.DOC_DO, "zzl")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(maps)))
+        .andDo(print())
+        .andExpect(status().isOk())
+        .andDo(document("do-order",
+            orderRequestPathParameters,
+            orderRequestFieldsParameters,
+            orderResponseFieldsParameters));
   }
 }

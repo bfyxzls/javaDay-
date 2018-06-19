@@ -4,4 +4,7 @@
 operation::doc-index[snippets='path-parameters,request-fields,curl-request,response-fields,http-response']
 
 == 订单列表
-operation::doc-list[snippets='path-parameters,request-fields,curl-request,response-fields,http-response']
+operation::doc-list[snippets='curl-request,response-fields,http-response']
+
+== 生成订单
+operation::do-order[snippets='path-parameters,request-fields,curl-request,response-fields,http-response']
