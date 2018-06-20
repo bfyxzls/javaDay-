@@ -1,11 +1,14 @@
 package test.lind.javaLindDay.collectionDemo;
 
-import lombok.Value;
-import lombok.val;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import lombok.Value;
+import lombok.val;
 
 public class CollectionDemo {
 
@@ -13,6 +16,8 @@ public class CollectionDemo {
    * sort list.
    */
   public void sortList() {
+    int[] arInt = {1, 2, 3, 4, 5};
+    String[] arStr = {"one", "two", "three"};
     List<String> names = Arrays.asList("peter", "anna", "mike", "xenia");
     Collections.sort(names, new Comparator<String>() {
       @Override

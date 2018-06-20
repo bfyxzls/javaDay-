@@ -3,3 +3,5 @@ lind:
 project:
     version: 1.0
     name: lind
+server:
+  port:8070

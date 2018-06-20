@@ -1,0 +1,13 @@
+pring:
+  application:
+    name: lindDay
+  cloud:
+    config:
+      uri: http://localhost:8200
+      profile: svt
+      label: master #当 ConfigServer 的后端存储的是 Git 的时候，默认就是 master
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

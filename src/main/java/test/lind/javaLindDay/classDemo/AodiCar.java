@@ -1,7 +1,5 @@
 package test.lind.javaLindDay.classDemo;
 
-import org.springframework.stereotype.Service;
-
 public class AodiCar extends Car {
 
   protected boolean selfValidate() {
