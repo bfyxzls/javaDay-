@@ -1,6 +1,7 @@
 package test.lind.javaLindDay;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
@@ -23,7 +24,6 @@ import test.lind.javaLindDay.model.UserDto;
 import test.lind.javaLindDay.model.UserInfo;
 import test.lind.javaLindDay.streamDemo.MapDemo;
 import test.lind.javaLindDay.utilDemo.DateDemo;
-import test.lind.javaLindDay.utilDemo.HttpClientDemo;
 import test.lind.javaLindDay.utilDemo.LoggerDemo;
 
 @SpringBootApplication
@@ -112,8 +112,23 @@ public class JavaLindDayApplication {
     //map demo
     MapInheritDemo.test();
 
-    HttpClientDemo.test();
+    List<UserDto> userDtos = new ArrayList<>();
+    UserDto userDto1 = UserDto.builder().name("zzl").build();
+    userDtos.add(userDto1);
+    userDtos.add(userDto);
+    System.out.println(userDtos.toString());
+    System.out.println(userDto1.toString());
+
+    List<String> testArrToStr = new ArrayList<>();
+    testArrToStr.add("儿子");
+    testArrToStr.add("我");
+    testArrToStr.add("爸爸");
+    Collections.reverse(testArrToStr);
+    System.out.println(String.join("->", testArrToStr));
+
+
     SpringApplication.run(JavaLindDayApplication.class, args);
+
   }
 
   public static double sum(List<? extends Number> list) {

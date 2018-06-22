@@ -14,6 +14,9 @@ public class Person {
   private String name;
   private Date birthDate;
   private Gender gender;
+  public Person() {
+
+  }
 
   public Person(int personId, String name, Date birthDate, Gender gender) {
     super();

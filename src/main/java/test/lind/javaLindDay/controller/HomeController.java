@@ -47,7 +47,7 @@ public class HomeController {
   @GetMapping("/add")
   public String add() {
     insertDemo.test();
-    return "OK";
+    return config.getName();
   }
 
   @GetMapping("/errors")
