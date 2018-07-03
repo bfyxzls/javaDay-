@@ -1,8 +1,12 @@
 package test.lind.javalindday.streamDemo;
 
-import java.util.ArrayList;
 import static java.util.Comparator.comparing;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Value;
@@ -23,6 +27,24 @@ public class MapDemo {
         .sorted(comparing(Seller::getName))
         .map(Seller::getName)
         .forEach(System.out::println);
+  }
+
+  public static void testDistinct() {
+    List<Map<String, Object>> maps = new ArrayList<>();
+    Map<String, Object> obj = new HashMap<>();
+    obj.put("name", "one");
+    obj.put("age", 1);
+    maps.add(obj);
+    obj = new HashMap<>();
+    obj.put("name", "one");
+    obj.put("age", 1);
+    maps.add(obj);
+    obj = new HashMap<>();
+    obj.put("name", "one");
+    obj.put("age", 1);
+    maps.add(obj);
+    maps = maps.stream().distinct().collect(Collectors.toList());
+    System.out.println(maps);
   }
 }
 

@@ -128,14 +128,9 @@ public class JavaLindDayApplication {
     Collections.reverse(testArrToStr);
     System.out.println(String.join("->", testArrToStr));
 
-    hello();
-    hello(123);
+    MapDemo.testDistinct();
     SpringApplication.run(JavaLindDayApplication.class, args);
 
-  }
-
-  static void hello(int... a) {
-    System.out.println("int ...a=" + a[0]);
   }
 
   public static double sum(List<? extends Number> list) {
