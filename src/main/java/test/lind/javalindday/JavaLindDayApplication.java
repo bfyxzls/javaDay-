@@ -2,7 +2,10 @@ package test.lind.javalindday;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +20,7 @@ import test.lind.javalindday.collectionDemo.MapInheritDemo;
 import test.lind.javalindday.collectionDemo.StackDemo;
 import test.lind.javalindday.collectionDemo.StreamDemo;
 import test.lind.javalindday.enumDemo.DescriptionDemo;
+import test.lind.javalindday.generic.GenericFunDemo;
 import test.lind.javalindday.interfaceDemo.Formula;
 import test.lind.javalindday.interfaceDemo.FunctionalInterfaceDemo;
 import test.lind.javalindday.model.Person;
@@ -129,6 +133,14 @@ public class JavaLindDayApplication {
     System.out.println(String.join("->", testArrToStr));
 
     MapDemo.testDistinct();
+
+    //函数式接口
+    Map<String, String> maps = new HashMap<>();
+    Function<String, String> function = (x) -> {
+      System.out.print(x + ": ");
+      return "Function";
+    };
+    GenericFunDemo.singletonMap(function, "你炫舞");
     SpringApplication.run(JavaLindDayApplication.class, args);
 
   }
