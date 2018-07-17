@@ -1,11 +1,15 @@
 package test.lind.javalindday;
 
+import java.time.YearMonth;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.SpringApplication;
@@ -141,9 +145,21 @@ public class JavaLindDayApplication {
       return "Function";
     };
     GenericFunDemo.singletonMap(function, "你炫舞");
+
+    YearMonth from = YearMonth.of(2018, 1);
+    YearMonth to = YearMonth.of(2018, 9);
+    collectLocalDates(from, to).forEach(System.out::println);
+
     SpringApplication.run(JavaLindDayApplication.class, args);
 
   }
+
+  public static List<YearMonth> collectLocalDates(YearMonth start, YearMonth end) {
+    return Stream.iterate(start, localDate -> localDate.plusMonths(1))
+        .limit(ChronoUnit.MONTHS.between(start, end) + 1)
+        .collect(Collectors.toList());
+  }
+
 
   public static double sum(List<? extends Number> list) {
     double sum = 0;

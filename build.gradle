@@ -87,7 +87,7 @@ dependencyManagement {
 
 //默认的一些文件路径的配置
 sourceSets {
-    integTest {
+    tes {
         java.srcDir file('src/test/java')
         resources.srcDir file('src/test/resources')
 
@@ -135,6 +135,8 @@ dependencies {
             'org.springframework.cloud:spring-cloud-starter-openfeign',
             'org.springframework.cloud:spring-cloud-starter-sleuth',
             'org.springframework.boot:spring-boot-starter-actuator',
+            'org.springframework.cloud:spring-cloud-starter-zipkin',
+
     )
 
     testCompile(

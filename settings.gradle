@@ -1,1 +1,5 @@
 rootProject.name = 'javalindday'
+include 'integTest'
+include 'stressTest'
+include 'yaoliTest'
+

@@ -1,4 +1,4 @@
-pring:
+spring:
   application:
     name: lindDay
   cloud:
@@ -7,7 +7,22 @@ pring:
       profile: svt
       label: master #当 ConfigServer 的后端存储的是 Git 的时候，默认就是 master
 
+
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+
+spring:
+  zipkin:
+      #服务端地址
+      base-url: http://127.0.0.1:9411
+      #本项目服务名
+      service:
+        name: lindDay
+      sleuth:
+      #监控开关
+      enabled: true
+      #采样率
+      sampler:
+        percentage: 1
