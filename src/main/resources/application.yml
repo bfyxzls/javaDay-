@@ -4,4 +4,13 @@ project:
     version: 1.0
     name: lind
 server:
-  port:8070
+  port: 8070
+
+management:
+  server:
+    port: 8071
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: info,env,beans

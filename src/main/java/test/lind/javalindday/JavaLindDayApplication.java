@@ -14,6 +14,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import test.lind.javalindday.classDemo.BiaozhiCar;
 import test.lind.javalindday.classDemo.FengTianCar;
 import test.lind.javalindday.classDemo.LombokDemo;
@@ -35,6 +37,8 @@ import test.lind.javalindday.utilDemo.DateDemo;
 import test.lind.javalindday.utilDemo.LoggerDemo;
 
 @SpringBootApplication
+@EnableScheduling
+@EnableCaching
 public class JavaLindDayApplication {
   public static void aaa() {
   }
