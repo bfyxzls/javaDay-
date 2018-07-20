@@ -78,6 +78,32 @@ public class MapDemo {
     List<Integer> result = outer.stream().flatMap(inner -> inner.stream().map(i -> i + 1)).collect(toList());
     System.out.println(result);
   }
+
+  public static void baiduTest() {
+    List<BaiduShop> baiduShops = new ArrayList<>();
+    BaiduShop baiduShop = new BaiduShop();
+    baiduShop.setName("ok");
+    baiduShops.add(baiduShop);
+    baiduShop.setName("good");//它会把上面的ok覆盖,必须从新定义新的变量
+    baiduShops.add(baiduShop);
+    baiduShops.stream().map(o -> o.getName()).forEach(System.out::println);
+
+
+  }
+}
+
+class BaiduShop extends HashMap<String, Object> {
+  private String name;
+
+  public String getName() {
+
+    return this.get("name").toString();
+  }
+
+  public void setName(String name) {
+    this.put("name", name);
+  }
+
 }
 
 @Builder

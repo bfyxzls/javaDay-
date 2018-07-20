@@ -153,7 +153,7 @@ public class JavaLindDayApplication {
     YearMonth from = YearMonth.of(2018, 1);
     YearMonth to = YearMonth.of(2018, 9);
     collectLocalDates(from, to).forEach(System.out::println);
-
+    MapDemo.baiduTest();
     SpringApplication.run(JavaLindDayApplication.class, args);
 
   }
