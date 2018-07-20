@@ -141,7 +141,7 @@ public class JavaLindDayApplication {
     System.out.println(String.join("->", testArrToStr));
 
     MapDemo.testDistinct();
-
+    MapDemo.testMap();
     //函数式接口
     Map<String, String> maps = new HashMap<>();
     Function<String, String> function = (x) -> {
