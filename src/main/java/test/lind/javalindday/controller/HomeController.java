@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import test.lind.javalindday.classDemo.AodiCar;
 import test.lind.javalindday.classDemo.Car;
 import test.lind.javalindday.model.OrderInfo;
-import test.lind.javalindday.mongodbDemo.InsertDemo;
+import test.lind.javalindday.mongodbDemo.MongodbDemo;
 import test.lind.javalindday.utilDemo.MyConfig;
 
 @Slf4j
@@ -28,7 +28,7 @@ public class HomeController {
   MyConfig config;
 
   @Autowired
-  InsertDemo insertDemo;
+  MongodbDemo insertDemo;
   @Autowired
   MongoTemplate mongoTemplate;
 
@@ -48,6 +48,11 @@ public class HomeController {
   public String add() {
     insertDemo.test();
     return config.getName();
+  }
+
+  @GetMapping("/map-reduce")
+  public void mapReduce() {
+    insertDemo.mapreduce();
   }
 
   @GetMapping("/errors")

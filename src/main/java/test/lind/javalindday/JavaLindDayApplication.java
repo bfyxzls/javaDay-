@@ -32,6 +32,7 @@ import test.lind.javalindday.interfaceDemo.FunctionalInterfaceDemo;
 import test.lind.javalindday.model.Person;
 import test.lind.javalindday.model.UserDto;
 import test.lind.javalindday.model.UserInfo;
+import test.lind.javalindday.mongodbDemo.MongodbDemo;
 import test.lind.javalindday.streamDemo.MapDemo;
 import test.lind.javalindday.utilDemo.DateDemo;
 import test.lind.javalindday.utilDemo.LoggerDemo;
@@ -45,7 +46,6 @@ public class JavaLindDayApplication {
 
   public static void main(String[] args) {
     System.out.println("hello world!");
-
     // interface default method.
     Formula formula = new Formula() {
       @Override
