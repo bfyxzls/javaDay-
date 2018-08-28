@@ -2,7 +2,10 @@ package test.lind.javalindday.controller;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +14,13 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import test.lind.javalindday.classDemo.AodiCar;
 import test.lind.javalindday.classDemo.Car;
 import test.lind.javalindday.model.OrderInfo;
+import test.lind.javalindday.model.Person;
 import test.lind.javalindday.mongodbDemo.MongodbDemo;
 import test.lind.javalindday.utilDemo.MyConfig;
 
@@ -33,7 +37,11 @@ public class HomeController {
   MongoTemplate mongoTemplate;
 
   @RequestMapping("/")
-  public Map<String, String> Index(@PathVariable String buyer) throws Exception {
+  public Map<String, String> Index(@RequestParam String buyer) throws Exception {
+    insertDemo.add();
+    List<Person> list = new ArrayList<>();
+    list.add(new Person(1, "zzl", new Date(), Person.Gender.MALE));
+    log.debug("person:{}", list.toString());
     Car car = (Car) Class.forName(AodiCar.class.getName()).newInstance();
     car.validate();
     Map<String, String> maps = new HashMap<>();

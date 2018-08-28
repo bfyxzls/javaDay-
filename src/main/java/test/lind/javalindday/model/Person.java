@@ -8,7 +8,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.ToString;
 
+@ToString
 public class Person {
   private int personId;
   private String name;

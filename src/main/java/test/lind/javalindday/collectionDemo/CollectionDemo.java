@@ -12,6 +12,7 @@ import lombok.val;
 
 public class CollectionDemo {
 
+
   /**
    * sort list.
    */
@@ -19,6 +20,7 @@ public class CollectionDemo {
     int[] arInt = {1, 2, 3, 4, 5};
     String[] arStr = {"one", "two", "three"};
     List<String> names = Arrays.asList("peter", "anna", "mike", "xenia");
+    List list = Arrays.asList(arInt);
     Collections.sort(names, new Comparator<String>() {
       @Override
       public int compare(String a, String b) {

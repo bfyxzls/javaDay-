@@ -2,9 +2,11 @@ package test.lind.javalindday.mongodbDemo;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
+import com.google.common.collect.ImmutableList;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import test.lind.javalindday.model.OrderInfo;
+import test.lind.javalindday.model.TaxAmountConfig;
 import test.lind.javalindday.model.Test;
 
 @Service
@@ -91,5 +94,22 @@ public class MongodbDemo {
     System.out.println("collection size:" + mongoTemplate.findAll(Test.class).size());
 
     System.out.println("map reduce count:" + results.iterator().hasNext());
+  }
+
+  public void add(){
+    List<TaxAmountConfig.AmountConfig> amountConfigs = ImmutableList.of(
+        TaxAmountConfig.AmountConfig.builder()
+            .rate(1)
+            .thresholdMax(5000)
+            .thresholdMin(3000)
+            .value(10)
+            .build()
+    );
+    TaxAmountConfig taxAmountConfig = TaxAmountConfig.builder()
+        .base(3000)
+        .accountPeriod(YearMonth.of(2017, 5))
+        .amountConfigs(amountConfigs)
+        .build();
+    mongoTemplate.insert(taxAmountConfig);
   }
 }

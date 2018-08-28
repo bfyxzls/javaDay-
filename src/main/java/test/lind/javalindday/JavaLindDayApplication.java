@@ -16,6 +16,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import test.lind.javalindday.arithmetic.HeapSort;
 import test.lind.javalindday.classDemo.BiaozhiCar;
 import test.lind.javalindday.classDemo.FengTianCar;
 import test.lind.javalindday.classDemo.LombokDemo;
@@ -37,6 +38,10 @@ import test.lind.javalindday.streamDemo.MapDemo;
 import test.lind.javalindday.utilDemo.DateDemo;
 import test.lind.javalindday.utilDemo.LoggerDemo;
 
+enum Color {
+  RED, GREEN
+}
+
 @SpringBootApplication
 @EnableScheduling
 @EnableCaching
@@ -46,6 +51,12 @@ public class JavaLindDayApplication {
 
   public static void main(String[] args) {
     System.out.println("hello world!");
+    YearMonth yearMonth = YearMonth.parse("2018-01");
+    YearMonth y1 = YearMonth.of(2018, 1);
+    String y2 = y1.toString();
+    Color color = Color.valueOf("RED");
+    Integer integer = 1;
+    HeapSort.test();
     // interface default method.
     Formula formula = new Formula() {
       @Override
