@@ -18,5 +18,6 @@ public class UserInfo {
   @MinMoney(message = "金额不能小于0.")
   @MaxMoney(value = 10, message = "金额不能大于10.")
   private Money price;
+  private Integer age;
 
 }

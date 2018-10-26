@@ -3,6 +3,9 @@ package test.lind.javalindday;
 import org.junit.Assert;
 import org.junit.Test;
 
+interface BaseEnum {
+}
+
 public class EnumTest {
   @Test
   public void convert() {
@@ -33,4 +36,6 @@ public class EnumTest {
       return this.description;
     }
   }
+
+
 }
